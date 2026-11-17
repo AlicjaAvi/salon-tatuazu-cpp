@@ -41,7 +41,7 @@ int main() {
             salon.dodajWizyte(new Tatuaz(id, klient, artysta, cena, rozmiar, kolor == 1));
         } else if (wybor == 3) {
             // dokonczyc wczytywanie piercingu z konsoli
-            cout << "Opcja w trakcie implementacji...\n";
+            cout << "do zrobienia";
         }
     }
 
