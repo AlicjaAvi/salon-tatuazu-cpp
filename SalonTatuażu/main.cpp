@@ -1,21 +1,15 @@
 #include <iostream>
-#include <limits>
 #include "Salon.h"
 #include "Tatuaz.h"
 #include "Piercing.h"
 
 using namespace std;
 
-void wyczyscBufor() {
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
-
 void zaladujDaneStartowe(Salon& salon) {
-    salon.dodajWizyte(new Tatuaz(1, "Anna Nowak", "Marek", 300.0, 25.0, false));
-    salon.dodajWizyte(new Piercing(2, "Kamil Kowalski", "Zuza", 120.0, "Septum", "Tytan"));
-    salon.dodajWizyte(new Tatuaz(3, "Piotr Wisniewski", "Marek", 400.0, 40.0, true));
-    salon.dodajWizyte(new Piercing(4, "Anna Nowak", "Zuza", 150.0, "Daith", "Tytan"));
+    salon.dodajWizyte(new Tatuaz(1, "Anna_Nowak", "Marek", 300.0, 25.0, false));
+    salon.dodajWizyte(new Piercing(2, "Kamil_Kowalski", "Zuza", 120.0, "Septum", "Tytan"));
+    salon.dodajWizyte(new Tatuaz(3, "Piotr_Wisniewski", "Marek", 400.0, 40.0, true));
+    salon.dodajWizyte(new Piercing(4, "Anna_Nowak", "Zuza", 150.0, "Daith", "Tytan"));
 }
 
 int main() {
@@ -37,36 +31,28 @@ int main() {
              << "0. Wyjscie\n"
              << "Twoj wybor: ";
 
-        if (!(cin >> wybor)) {
-            cout << "Blad: Wprowadz poprawna liczbe!\n";
-            wyczyscBufor();
-            continue;
-        }
-        wyczyscBufor();
+        cin >> wybor;
 
         try {
             if (wybor == 1) {
                 salon.wyswietlWszystkieWizyty();
             } else if (wybor == 2) {
-                int id;
+                int id, kolorWybor;
                 string klient, artysta;
                 double cena, rozmiar;
-                int kolorWybor;
 
                 cout << "Podaj ID wizyty: ";
                 cin >> id;
-                wyczyscBufor();
-                cout << "Imie i nazwisko klienta: ";
-                getline(cin, klient);
+                cout << "Klient (np. Jan_Kowalski): ";
+                cin >> klient;
                 cout << "Artysta (tatuator): ";
-                getline(cin, artysta);
+                cin >> artysta;
                 cout << "Cena bazowa (PLN): ";
                 cin >> cena;
                 cout << "Rozmiar tatuazu (cm2): ";
                 cin >> rozmiar;
                 cout << "Czy kolorowy? (1 - Tak, 0 - Nie): ";
                 cin >> kolorWybor;
-                wyczyscBufor();
 
                 salon.dodajWizyte(new Tatuaz(id, klient, artysta, cena, rozmiar, kolorWybor == 1));
                 cout << "Pomyslnie dodano wizyte na tatuaz!\n";
@@ -78,18 +64,16 @@ int main() {
 
                 cout << "Podaj ID wizyty: ";
                 cin >> id;
-                wyczyscBufor();
-                cout << "Imie i nazwisko klienta: ";
-                getline(cin, klient);
+                cout << "Klient (np. Jan_Kowalski): ";
+                cin >> klient;
                 cout << "Artysta (piercer): ";
-                getline(cin, artysta);
+                cin >> artysta;
                 cout << "Cena bazowa (PLN): ";
                 cin >> cena;
-                wyczyscBufor();
                 cout << "Miejsce przeklucia (np. Septum, Daith, Labret): ";
-                getline(cin, miejsce);
+                cin >> miejsce;
                 cout << "Material kolczyka (Tytan / Stal): ";
-                getline(cin, material);
+                cin >> material;
 
                 salon.dodajWizyte(new Piercing(id, klient, artysta, cena, miejsce, material));
                 cout << "Pomyslnie dodano wizyte na piercing!\n";
@@ -97,7 +81,7 @@ int main() {
             } else if (wybor == 4) {
                 string fraza;
                 cout << "Podaj imie lub nazwisko klienta: ";
-                getline(cin, fraza);
+                cin >> fraza;
                 salon.wyszukajPoKliencie(fraza);
 
             } else if (wybor == 5) {
@@ -107,7 +91,6 @@ int main() {
                 cin >> id;
                 cout << "Podaj nowa cene bazowa (PLN): ";
                 cin >> nowaCena;
-                wyczyscBufor();
 
                 salon.modyfikujCeneBazowa(id, nowaCena);
                 cout << "Cena bazowa zostala zaktualizowana.\n";
@@ -121,7 +104,6 @@ int main() {
                 int id;
                 cout << "Podaj ID wizyty do usuniecia: ";
                 cin >> id;
-                wyczyscBufor();
 
                 salon.usunWizytePoId(id);
                 cout << "Wizyta o ID " << id << " zostala usunieta.\n";
