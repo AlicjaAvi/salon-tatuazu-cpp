@@ -1,0 +1,30 @@
+#ifndef PIERCING_H
+#define PIERCING_H
+
+#include "Usluga.h"
+
+using namespace std;
+
+class Piercing : public Usluga {
+private:
+    string miejscePrzeklucia;
+    string materialKolczyka; // np. "Tytan", "Stal"
+
+public:
+    Piercing();
+    Piercing(int id, const string& klient, const string& artysta,
+             double cenaBazowa, const string& miejscePrzeklucia, const string& materialKolczyka);
+    ~Piercing() override;
+
+    string getMiejscePrzeklucia() const;
+    string getMaterialKolczyka() const;
+
+    void setMiejscePrzeklucia(const string& noweMiejsce);
+    void setMaterialKolczyka(const string& nowyMaterial);
+
+    double obliczCeneKoncowa() const override;
+    string pobierzTyp() const override;
+    void wyswietlSzczegoly(ostream& os) const override;
+};
+
+#endif

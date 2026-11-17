@@ -1,0 +1,44 @@
+#ifndef USLUGA_H
+#define USLUGA_H
+
+#include <string>
+#include <iostream>
+#include <stdexcept>
+
+using namespace std;
+
+class Usluga {
+protected:
+    int id;
+    string klient;
+    string artysta;
+    double cenaBazowa;
+
+public:
+    Usluga();
+    Usluga(int id, const string& klient, const string& artysta, double cenaBazowa);
+    virtual ~Usluga();
+
+    // Gettery (const)
+    int getId() const;
+    string getKlient() const;
+    string getArtysta() const;
+    double getCenaBazowa() const;
+
+    // Settery z walidacją (wyjątki)
+    void setKlient(const string& nowyKlient);
+    void setArtysta(const string& nowyArtysta);
+    void setCenaBazowa(double nowaCena);
+
+    // Metody wirtualne (polimorfizm)
+    virtual double obliczCeneKoncowa() const = 0;
+    virtual string pobierzTyp() const = 0;
+    virtual void wyswietlSzczegoly(ostream& os) const;
+
+    // Przeciążenie operatorów (Próg 10.0)
+    bool operator==(const Usluga& inna) const;
+    bool operator<(const Usluga& inna) const;
+    friend ostream& operator<<(ostream& os, const Usluga& usluga);
+};
+
+#endif
