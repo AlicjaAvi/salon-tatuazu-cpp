@@ -2,9 +2,10 @@
 #include "Salon.h"
 #include "Tatuaz.h"
 #include "Piercing.h"
-
 using namespace std;
-
+//cd SalonTatuażu
+//g++ -std=c++17 main.cpp Usluga.cpp Tatuaz.cpp Piercing.cpp Salon.cpp -o salon
+//./salon
 void zaladujDaneStartowe(Salon& salon) {
     salon.dodajWizyte(new Tatuaz(1, "Anna_Nowak", "Marek", 300.0, 25.0, false));
     salon.dodajWizyte(new Piercing(2, "Kamil_Kowalski", "Zuza", 120.0, "Septum", "Tytan"));
