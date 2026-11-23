@@ -1,7 +1,5 @@
 #include "Piercing.h"
 
-using namespace std;
-
 Piercing::Piercing()
     : Usluga(), miejscePrzeklucia("Ucho"), materialKolczyka("Tytan") {}
 
@@ -11,7 +9,7 @@ Piercing::Piercing(int id, const string& klient, const string& artysta,
       miejscePrzeklucia(miejscePrzeklucia),
       materialKolczyka(materialKolczyka) {
     if (miejscePrzeklucia.empty() || materialKolczyka.empty()) {
-        throw invalid_argument("Miejsce przeklucia oraz material kolczyka nie moga byc puste.");
+        throw "Miejsce przeklucia oraz material kolczyka nie moga byc puste.";
     }
 }
 
@@ -22,20 +20,19 @@ string Piercing::getMaterialKolczyka() const { return materialKolczyka; }
 
 void Piercing::setMiejscePrzeklucia(const string& noweMiejsce) {
     if (noweMiejsce.empty()) {
-        throw invalid_argument("Miejsce przeklucia nie moze byc puste.");
+        throw "Miejsce przeklucia nie moze byc puste.";
     }
     miejscePrzeklucia = noweMiejsce;
 }
 
 void Piercing::setMaterialKolczyka(const string& nowyMaterial) {
     if (nowyMaterial.empty()) {
-        throw invalid_argument("Material kolczyka nie moze byc pusty.");
+        throw "Material kolczyka nie moze byc pusty.";
     }
     materialKolczyka = nowyMaterial;
 }
 
 double Piercing::obliczCeneKoncowa() const {
-    // Tytan G23 dolicza +50 PLN do ceny bazowej, pozostałe materiały +20 PLN
     double doplata = (materialKolczyka == "Tytan" || materialKolczyka == "tytan") ? 50.0 : 20.0;
     return cenaBazowa + doplata;
 }
