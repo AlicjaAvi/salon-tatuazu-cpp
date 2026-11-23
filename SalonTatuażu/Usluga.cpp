@@ -1,19 +1,17 @@
 #include "Usluga.h"
 
-using namespace std;
-
 Usluga::Usluga() : id(0), klient("Nieznany"), artysta("Brak"), cenaBazowa(100.0) {}
 
 Usluga::Usluga(int id, const string& klient, const string& artysta, double cenaBazowa)
     : id(id), klient(klient), artysta(artysta), cenaBazowa(cenaBazowa) {
     if (id <= 0) {
-        throw invalid_argument("ID wizyty musi byc liczba dodatnia.");
+        throw "ID wizyty musi byc liczba dodatnia.";
     }
     if (klient.empty() || artysta.empty()) {
-        throw invalid_argument("Imie klienta oraz artysty nie moga byc puste.");
+        throw "Imie klienta oraz artysty nie moga byc puste.";
     }
     if (cenaBazowa <= 0) {
-        throw invalid_argument("Cena bazowa musi byc wieksza od zera.");
+        throw "Cena bazowa musi byc wieksza od zera.";
     }
 }
 
@@ -26,21 +24,21 @@ double Usluga::getCenaBazowa() const { return cenaBazowa; }
 
 void Usluga::setKlient(const string& nowyKlient) {
     if (nowyKlient.empty()) {
-        throw invalid_argument("Imie klienta nie moze byc puste.");
+        throw "Imie klienta nie moze byc puste.";
     }
     klient = nowyKlient;
 }
 
 void Usluga::setArtysta(const string& nowyArtysta) {
     if (nowyArtysta.empty()) {
-        throw invalid_argument("Imie artysty nie moze byc puste.");
+        throw "Imie artysty nie moze byc puste.";
     }
     artysta = nowyArtysta;
 }
 
 void Usluga::setCenaBazowa(double nowaCena) {
     if (nowaCena <= 0) {
-        throw invalid_argument("Nowa cena bazowa musi byc wieksza od zera.");
+        throw "Nowa cena bazowa musi byc wieksza od zera.";
     }
     cenaBazowa = nowaCena;
 }
