@@ -1,14 +1,12 @@
 #include "Tatuaz.h"
 
-using namespace std;
-
 Tatuaz::Tatuaz() : Usluga(), rozmiarCm2(10.0), czyKolorowy(false) {}
 
 Tatuaz::Tatuaz(int id, const string& klient, const string& artysta,
                double cenaBazowa, double rozmiarCm2, bool czyKolorowy)
     : Usluga(id, klient, artysta, cenaBazowa), rozmiarCm2(rozmiarCm2), czyKolorowy(czyKolorowy) {
     if (rozmiarCm2 <= 0) {
-        throw invalid_argument("Rozmiar tatuazu musi byc wiekszy od 0 cm2.");
+        throw "Rozmiar tatuazu musi byc wiekszy od 0 cm2.";
     }
 }
 
@@ -19,7 +17,7 @@ bool Tatuaz::getCzyKolorowy() const { return czyKolorowy; }
 
 void Tatuaz::setRozmiarCm2(double nowyRozmiar) {
     if (nowyRozmiar <= 0) {
-        throw invalid_argument("Rozmiar tatuazu musi byc wiekszy od 0 cm2.");
+        throw "Rozmiar tatuazu musi byc wiekszy od 0 cm2.";
     }
     rozmiarCm2 = nowyRozmiar;
 }
@@ -29,7 +27,6 @@ void Tatuaz::setCzyKolorowy(bool kolor) {
 }
 
 double Tatuaz::obliczCeneKoncowa() const {
-    // Cena bazowa + 15 PLN za każdy cm^2; +25% dopłaty za kolor
     double suma = cenaBazowa + (rozmiarCm2 * 15.0);
     if (czyKolorowy) {
         suma *= 1.25;
