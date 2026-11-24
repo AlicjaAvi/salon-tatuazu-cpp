@@ -2,6 +2,7 @@
 
 Tatuaz::Tatuaz() : Usluga(), rozmiarCm2(10.0), czyKolorowy(false) {}
 
+// wywolanie konstruktora klasy bazowej Usluga na liscie inicjalizacyjnej
 Tatuaz::Tatuaz(int id, const string& klient, const string& artysta,
                double cenaBazowa, double rozmiarCm2, bool czyKolorowy)
     : Usluga(id, klient, artysta, cenaBazowa), rozmiarCm2(rozmiarCm2), czyKolorowy(czyKolorowy) {
@@ -27,9 +28,9 @@ void Tatuaz::setCzyKolorowy(bool kolor) {
 }
 
 double Tatuaz::obliczCeneKoncowa() const {
-    double suma = cenaBazowa + (rozmiarCm2 * 15.0);
+    double suma = cenaBazowa + (rozmiarCm2 * 15.0); // 15 PLN za kazdy cm2
     if (czyKolorowy) {
-        suma *= 1.25;
+        suma *= 1.25; // +25% doplaty za tusz kolorowy
     }
     return suma;
 }
@@ -39,7 +40,7 @@ string Tatuaz::pobierzTyp() const {
 }
 
 void Tatuaz::wyswietlSzczegoly(ostream& os) const {
-    Usluga::wyswietlSzczegoly(os);
+    Usluga::wyswietlSzczegoly(os); // wywolanie wersji bazowej + dopisanie pol tatuazu
     os << " | Rozmiar: " << rozmiarCm2 << " cm2"
-       << " | Kolor: " << (czyKolorowy ? "Tak" : "Nie");
+       << " | Kolor: " << (czyKolorowy ? "Tak" : "Nie"); 
 }
