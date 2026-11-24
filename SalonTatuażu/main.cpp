@@ -4,9 +4,6 @@
 #include "Piercing.h"
 
 using namespace std;
-//cd SalonTatuażu
-//g++ -std=c++17 main.cpp Usluga.cpp Tatuaz.cpp Piercing.cpp Salon.cpp -o salon
-//./salon
 // referencja Salon& pozwala modyfikowac oryginalny obiekt salonu z main()
 void zaladujDaneStartowe(Salon& salon) {
     // operator new alokuje obiekt w pamieci dynamicznej i zwraca wskaznik
