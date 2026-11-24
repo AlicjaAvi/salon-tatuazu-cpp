@@ -3,12 +3,11 @@
 
 #include "Usluga.h"
 
-using namespace std;
-
+// druga klasa pochodna dziedziczaca po Usluga
 class Piercing : public Usluga {
 private:
     string miejscePrzeklucia;
-    string materialKolczyka; // np. "Tytan", "Stal"
+    string materialKolczyka;
 
 public:
     Piercing();
