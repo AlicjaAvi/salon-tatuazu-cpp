@@ -1,9 +1,11 @@
 #include "Usluga.h"
 
+// lista inicjalizacyjna wpisuje wartosci startowe przed cialem konstruktora
 Usluga::Usluga() : id(0), klient("Nieznany"), artysta("Brak"), cenaBazowa(100.0) {}
 
 Usluga::Usluga(int id, const string& klient, const string& artysta, double cenaBazowa)
     : id(id), klient(klient), artysta(artysta), cenaBazowa(cenaBazowa) {
+    // walidacja danych wejsciowych - rzucenie wyjatku (throw) przerywa tworzenie obiektu
     if (id <= 0) {
         throw "ID wizyty musi byc liczba dodatnia.";
     }
@@ -44,6 +46,7 @@ void Usluga::setCenaBazowa(double nowaCena) {
 }
 
 void Usluga::wyswietlSzczegoly(ostream& os) const {
+    // wywoluje wirtualna metode pobierzTyp(), wiec wstawi Tatuaz lub Piercing
     os << "[ID: " << id << "] Typ: " << pobierzTyp()
        << " | Klient: " << klient
        << " | Artysta: " << artysta
@@ -51,7 +54,7 @@ void Usluga::wyswietlSzczegoly(ostream& os) const {
 }
 
 bool Usluga::operator==(const Usluga& inna) const {
-    return this->id == inna.id;
+    return this->id == inna.id; // this wskazuje na biezacy obiekt po lewej stronie znaku ==
 }
 
 bool Usluga::operator<(const Usluga& inna) const {
@@ -59,7 +62,7 @@ bool Usluga::operator<(const Usluga& inna) const {
 }
 
 ostream& operator<<(ostream& os, const Usluga& usluga) {
-    usluga.wyswietlSzczegoly(os);
+    usluga.wyswietlSzczegoly(os); // polimorficzne wypisanie szczegolow
     os << " | Cena koncowa: " << usluga.obliczCeneKoncowa() << " PLN";
-    return os;
+    return os; // zwraca strumien, zeby mozna bylo laczyc kilka << w jednej linii
 }
