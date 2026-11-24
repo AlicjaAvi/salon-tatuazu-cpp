@@ -2,11 +2,14 @@
 #include "Salon.h"
 #include "Tatuaz.h"
 #include "Piercing.h"
+
 using namespace std;
 //cd SalonTatuażu
 //g++ -std=c++17 main.cpp Usluga.cpp Tatuaz.cpp Piercing.cpp Salon.cpp -o salon
 //./salon
+// referencja Salon& pozwala modyfikowac oryginalny obiekt salonu z main()
 void zaladujDaneStartowe(Salon& salon) {
+    // operator new alokuje obiekt w pamieci dynamicznej i zwraca wskaznik
     salon.dodajWizyte(new Tatuaz(1, "Anna_Nowak", "Marek", 300.0, 25.0, false));
     salon.dodajWizyte(new Piercing(2, "Kamil_Kowalski", "Zuza", 120.0, "Septum", "Tytan"));
     salon.dodajWizyte(new Tatuaz(3, "Piotr_Wisniewski", "Marek", 400.0, 40.0, true));
@@ -18,7 +21,7 @@ int main() {
     zaladujDaneStartowe(salon);
 
     int wybor = -1;
-    while (wybor != 0) {
+    while (wybor != 0) { 
         cout << "\n============================================\n"
              << "  SYSTEM ZARZADZANIA SALONEM TATUAZU I PIERCINGU\n"
              << "============================================\n"
@@ -34,7 +37,7 @@ int main() {
 
         cin >> wybor;
 
-        try {
+        try { // blok chroniony - wylapuje bledy rzucone przez throw w klasach
             if (wybor == 1) {
                 salon.wyswietlWszystkieWizyty();
             } else if (wybor == 2) {
@@ -55,6 +58,7 @@ int main() {
                 cout << "Czy kolorowy? (1 - Tak, 0 - Nie): ";
                 cin >> kolorWybor;
 
+                // kolorWybor == 1 zamienia liczbe 1/0 na wartosc bool true/false
                 salon.dodajWizyte(new Tatuaz(id, klient, artysta, cena, rozmiar, kolorWybor == 1));
                 cout << "Pomyslnie dodano wizyte na tatuaz!\n";
 
@@ -114,10 +118,10 @@ int main() {
             } else {
                 cout << "Nieznana opcja w menu.\n";
             }
-        } catch (const char* blad) {
+        } catch (const char* blad) { // przechwytuje tekst rzucony przez throw
             cout << "\n[BLAD]: " << blad << "\n";
         }
     }
 
-    return 0;
+    return 0; //automatycznie wywoluje destruktor ~Salon()
 }
