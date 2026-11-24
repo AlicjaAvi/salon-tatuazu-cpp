@@ -5,22 +5,20 @@
 #include <string>
 #include "Usluga.h"
 
-using namespace std;
-
 class Salon {
 private:
     string nazwaSalonu;
-    vector<Usluga*> wizyty;
+    vector<Usluga*> wizyty; // wektor wskaznikow bazowych -> przechowuje razem Tatuaz i Piercing (polimorfizm)
 
 public:
     Salon();
-    explicit Salon(const string& nazwa);
-    ~Salon();
+    explicit Salon(const string& nazwa); // explicit blokuje niejawna konwersje string -> Salon
+    ~Salon(); // destruktor zwalnia pamiec obiektow z wektora (kompozycja)
 
     string getNazwaSalonu() const;
     void setNazwaSalonu(const string& nowaNazwa);
 
-    // Operacje na obiektach (CRUD)
+    // operacje CRUD na obiektach
     void dodajWizyte(Usluga* nowaWizyta);
     void usunWizytePoId(int id);
     void modyfikujCeneBazowa(int id, double nowaCena);
