@@ -33,6 +33,7 @@ void Piercing::setMaterialKolczyka(const string& nowyMaterial) {
 }
 
 double Piercing::obliczCeneKoncowa() const {
+    // 50 PLN doplaty za tytan, 20 PLN za inny material
     double doplata = (materialKolczyka == "Tytan" || materialKolczyka == "tytan") ? 50.0 : 20.0;
     return cenaBazowa + doplata;
 }
