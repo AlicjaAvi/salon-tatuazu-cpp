@@ -5,7 +5,7 @@ Usluga::Usluga() : id(0), klient("Nieznany"), artysta("Brak"), cenaBazowa(100.0)
 
 Usluga::Usluga(int id, const string& klient, const string& artysta, double cenaBazowa)
     : id(id), klient(klient), artysta(artysta), cenaBazowa(cenaBazowa) {
-    // walidacja danych wejsciowych - rzucenie wyjatku (throw) przerywa tworzenie obiektu
+    // walidacja danych wejsciowych, rzucenie wyjatku przerywa tworzenie obiektu
     if (id <= 0) {
         throw "ID wizyty musi byc liczba dodatnia.";
     }
